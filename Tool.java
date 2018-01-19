@@ -1,13 +1,11 @@
 public class Tool {
     private String name;
     private String material;
-    private String usability;
     private int durability;
 
-    public Tool(String name; String material; String usability){
+    public Tool(String name, String material) {
         this.name = name;
         this.material = material;
-        this.usability = usability;
         this.durability = 10;
     }
 
@@ -18,12 +16,8 @@ public class Tool {
     public String getMaterial() {
         return material;
     }
-    
-    public String getUsability() {
-        return usability;
-    }
 
-    public String getDurability() {
+    public int getDurability() {
         return durability;
     }
 

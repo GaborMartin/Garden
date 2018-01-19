@@ -1,9 +1,9 @@
 public class Creature {
     private String name;
-    private String type;
+    private CreatureType type;
     private int availability;
 
-    public Creature(String name, String type , int availability){
+    public Creature(String name, CreatureType type){
         this.name = name;
         this.type = type;
         this.availability = 0;
@@ -13,7 +13,7 @@ public class Creature {
         return name;
     }
 
-    public String getType(){
+    public CreatureType getType(){
         return type;
     }
 

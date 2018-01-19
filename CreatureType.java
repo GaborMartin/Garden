@@ -1,4 +1,4 @@
 public enum CreatureType {
     ANIMAL,
-    PLANT,
+    PLANT
 }
