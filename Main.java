@@ -13,7 +13,7 @@ public class Main {
         System.out.println(garden.getCreatures().length);
         System.out.println("\nYour garden's details:");
         System.out.println(garden + "\n");
-        System.out.println("\nAvailable commands: :list, :create, :find, :types, :exit");
+        System.out.println("Available commands: :list, :create, :find, :types, :exit");
         while (true) {
             String line = scanner.nextLine();
             if (":exit".equals(line)) {
@@ -21,12 +21,15 @@ public class Main {
 
             } else if (":list".equals(line)) {
                 handleList();
+                handleMenu();
 
             } else if (":types".equals(line)) {
                 handleCreatureTypes();
+                handleMenu();
 
             } else if (":create".equals(line)) {
-                //handleCreate();
+                handleCreate();
+                handleMenu();
 
             } else if (":find".equals(line)) {
                 //handleFind();
@@ -50,8 +53,27 @@ public class Main {
             System.out.println("\tThere's no any animal or plant in the garden yet!");
         } else {
             for (int i = 0; i < garden.getCreatures().length; i++) {
-                System.out.println("\t" + garden.getCreatures()[i]);
+                System.out.println("\t" + garden.getCreatures()[i].getName());
             }
         }
+    }
+    private static void handleCreate() {
+        System.out.println("What is the type of the creature?");
+        String typeAsString = scanner.nextLine();
+        CreatureType type;
+        try {
+            type = CreatureType.valueOf(typeAsString);
+        } catch (IllegalArgumentException ex) {
+            System.out.println("Creation of this creature is forbidden!" + typeAsString + "\n Try ANIMAL or PLANT!");
+            return;
+        }
+        garden.createCreature(type);
+
+        System.out.println("Creation is done!");
+    }
+
+    private static void handleMenu() {
+        System.out.println("\nWhat would you like to do?");
+        System.out.println("Available commands: :list, :create, :find, :types, :exit");
     }
 }

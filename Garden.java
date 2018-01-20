@@ -44,7 +44,7 @@ public class Garden {
             + " Owner: " + owner + "\n";
     }
 
-    public Creature createCreature(String name, CreatureType type) {
+    public Creature createCreature(CreatureType type) {
         Creature creature;
         switch (type) {
             case PLANT:
@@ -53,9 +53,9 @@ public class Garden {
                 creature = new Plant(plantName, type);
                 break;
             case ANIMAL:
-            System.out.println("What's the name of your creature?");
+                System.out.println("What's the name of your creature?");
                 String animalName = sc.nextLine();
-                creature = new Plant(animalName, type);
+                creature = new Animal(animalName, type, true);
                 break;
             default:
                 throw new IllegalArgumentException("You can not add this type, try an animal or plant!");
