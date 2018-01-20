@@ -30,7 +30,21 @@ public class Garden {
         return tools;
     }
 
-    public Creature create(String name, CreatureType type) {
+    public static Garden createGarden(Player owner) {
+        Garden garden;
+        System.out.println("\nType in your garden's name: ");
+        String gardenName = sc.nextLine();
+        garden = new Garden(gardenName, owner);
+        return garden;
+
+    }
+
+    public String toString() {
+        return "Name: " + name +","
+            + " Owner: " + owner + "\n";
+    }
+
+    public Creature createCreature(String name, CreatureType type) {
         Creature creature;
         switch (type) {
             case PLANT:

@@ -46,6 +46,6 @@ public class Player {
         return "Name: " + name +","
             + " Gender: " + gender +","
             + " Age: " + age +","
-            + " Energylevel: " + energy;
+            + " Energylevel: " + energy + "\n";
     }
 }
