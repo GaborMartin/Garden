@@ -69,7 +69,7 @@ public class Main {
         }
         garden.createCreature(type);
 
-        System.out.println("Creation is done!");
+        System.out.println("Creation is done!ar");
     }
 
     private static void handleMenu() {
