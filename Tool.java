@@ -1,4 +1,4 @@
-public class Tool {
+public class Tool implements java.io.Serializable {
     private String name;
     private String material;
     private int durability;

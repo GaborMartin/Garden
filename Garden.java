@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-public class Garden {
+public class Garden implements java.io.Serializable {
     private String name;
-    private Player owner;
+    private Player owner; 
     private Creature[] creatures;
     private Tool[] tools;
     private static Scanner sc = new Scanner(System.in);
@@ -95,4 +95,6 @@ public class Garden {
     public void exit() {
         System.out.println("See ya next time!");
     }
+
+
 }

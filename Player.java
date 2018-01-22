@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Player {
+public class Player implements java.io.Serializable {
     String name;
     String gender;
     int age;

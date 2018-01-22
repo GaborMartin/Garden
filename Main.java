@@ -1,8 +1,9 @@
 import java.util.*;
+import java.io.*;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
-    private static Garden garden;
+    private static Garden garden ;
 
     public static void main(String[] args) {
         System.out.println("Welcome in garden simulation! First of all, please create your profile and garden!\n");
@@ -13,7 +14,7 @@ public class Main {
         System.out.println(garden.getCreatures().length);
         System.out.println("\nYour garden's details:");
         System.out.println(garden + "\n");
-        System.out.println("Available commands: :list, :create, :find, :types, :exit");
+        System.out.println("Available commands: :list, :create, :find, :types, :exit, :save and exit");
         while (true) {
             String line = scanner.nextLine();
             if (":exit".equals(line)) {
@@ -33,10 +34,13 @@ public class Main {
 
             } else if (":find".equals(line)) {
                 //handleFind();
+            } else if (":save and exit".equals(line)) {
+                handleSave(garden);
             }
-        }
+
+            }
         garden.exit();
-    }
+        }
 
     private static void handleCreatureTypes() {
         System.out.println("The available creatures in the garden: ");
@@ -74,6 +78,20 @@ public class Main {
 
     private static void handleMenu() {
         System.out.println("\nWhat would you like to do?");
-        System.out.println("Available commands: :list, :create, :find, :types, :exit");
+        System.out.println("Available commands: :list, :create, :find, :types, :exit, :save and exit");
+    }
+
+    private static void handleSave(Garden garden) {
+        try {
+         FileOutputStream fileOut =
+         new FileOutputStream("progress.ser");
+         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+         out.writeObject(garden);
+         out.close();
+         fileOut.close();
+         System.out.printf("Serialized data is saved in progress.ser");
+      } catch (IOException i) {
+         i.printStackTrace();
+      }
     }
 }

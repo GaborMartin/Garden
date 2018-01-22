@@ -1,4 +1,4 @@
-public class Creature {
+public class Creature implements java.io.Serializable {
     private String name;
     private CreatureType type;
     private int availability;
