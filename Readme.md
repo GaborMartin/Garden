@@ -3,17 +3,13 @@
 Compile the program like this
 
 ```
-cd <repo>
-cd src
-javac com/codecool/*.java
+javac *.java
 ```
 
 and execute it like this
 
 ```
-cd <repo>
-cd src
-java com.codecool.Main
+java Main
 ```
 
 then follow the instructions at look at the code :)
