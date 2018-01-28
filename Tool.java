@@ -24,4 +24,10 @@ public class Tool implements java.io.Serializable {
     public void use() {
         durability--;
     }
+
+    public String toString() {
+        return "Tool name: " + name +","
+            + " Material: " + material +","
+            + " Durability: " + durability +"\n";
+    }
 }
