@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.*;
 
 public class Garden implements java.io.Serializable {
     private String name;
@@ -74,7 +75,7 @@ public class Garden implements java.io.Serializable {
     } 
         
 
-    public void addTool(Tool tool) {
+    public void addToolToArray(Tool tool) {
         Tool[] tempArray = new Tool[tools.length + 1];
         for (int i = 0; i < tools.length; i++) {
             tempArray[i] = tools[i];
@@ -83,13 +84,20 @@ public class Garden implements java.io.Serializable {
         tools = tempArray;
     }
 
-    public Creature find(String name) {
-        for (Creature creature : creatures) {
-            if (creature.getName().equals(name)) {
-                return creature;
+    public void uploadTools(String csvFile) {
+        String line = "";
+        try(BufferedReader br = new BufferedReader(new FileReader("Tools.csv"))){
+            while((line = br.readLine()) != null){
+                String[] toolAsString = line.split(",");
+                    Tool tool = new Tool(toolAsString[0], toolAsString[1]);
+                    addToolToArray(tool);
+                }
             }
+
+        catch(IOException e) {
+            System.out.println("There is no file to read.");
+            e.printStackTrace();
         }
-        return null;
     }
 
     public void exit() {
