@@ -20,4 +20,10 @@ public class Creature implements java.io.Serializable {
     public int getAvailability(){
         return availability;
     }
+
+    public String toString() {
+        return "Creature name: " + name +","
+            + " Type: " + type +","
+            + " Availability: " + availability +"\n";
+    }
 }
