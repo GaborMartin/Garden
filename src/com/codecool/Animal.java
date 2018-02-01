@@ -1,3 +1,5 @@
+package com.codecool;
+
 public class Animal extends Creature {
     boolean isAlive;
 

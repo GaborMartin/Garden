@@ -1,3 +1,5 @@
+package com.codecool;
+
 public class Creature implements java.io.Serializable {
     private String name;
     private CreatureType type;

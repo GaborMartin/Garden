@@ -1,3 +1,5 @@
+package com.codecool;
+
 import java.util.Scanner;
 
 public class Player implements java.io.Serializable {
