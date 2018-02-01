@@ -194,6 +194,7 @@ public class Main {
                     String animalNameAsString = scanner.nextLine();
                     if (animalNameAsString.equals(creatures[i].getName())) {
                         creatures[i].toIncreaseAvailability();
+                        wateringCan.use();
                         player.setEnergy(10);
                         System.out.println("\n" + creatures[i].getName() + "'s availability increased to: " + creatures[i].getAvailability());
                         System.out.println("Your energy has decreased to: " + garden.getOwner().getEnergy());
