@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 
@@ -7,12 +9,16 @@ public class Garden implements java.io.Serializable {
     private Creature[] creatures;
     private Tool[] tools;
     private static Scanner sc = new Scanner(System.in);
+    private List<String> fridge;
+    private List<String> vegetables;
 
     public Garden(String name, Player owner){
         this.name = name;
         tools = new Tool[0];
         creatures = new Creature[0];
         this.owner = owner;
+        fridge = new ArrayList<>();
+        vegetables = new ArrayList<>();
     }
 
     public String getName() {
@@ -29,6 +35,10 @@ public class Garden implements java.io.Serializable {
 
     public Tool[] getTools() {
         return tools;
+    }
+
+    public List<String> getFridge() {
+        return fridge;
     }
 
     public static Garden createGarden(Player owner) {
@@ -72,9 +82,22 @@ public class Garden implements java.io.Serializable {
         }
         tempArray[tempArray.length - 1] = creature;
         creatures = tempArray;
-    } 
+    }
+    
+    public void removeCreatureFromArray(Creature creature) {
+        Creature[] tempArray = new Creature[creatures.length - 1];
+        int tempVariable = 0;
+        for (int i = 0; i < creatures.length; i++) {
+            if (creatures[i].getName().equals(creature.getName())) {
+                tempVariable = 1;
+            }
+            else {
+                tempArray[i - tempVariable] = creatures[i];
+            }
+        }
+        creatures = tempArray;
+        }
         
-
     public void addToolToArray(Tool tool) {
         Tool[] tempArray = new Tool[tools.length + 1];
         for (int i = 0; i < tools.length; i++) {
@@ -112,4 +135,13 @@ public class Garden implements java.io.Serializable {
         }
         return null;
     }
+
+    public void useAnimal(Animal animal) {
+        Tool knife = findTool("Slaughterer knife");
+                fridge.add("hurka");
+                fridge.add("kolbász");
+                fridge.add("sonka");
+                knife.use();
+    }
 }
+
