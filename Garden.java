@@ -143,5 +143,6 @@ public class Garden implements java.io.Serializable {
                 fridge.add("sonka");
                 knife.use();
     }
+
 }
 

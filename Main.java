@@ -180,36 +180,37 @@ public class Main {
                 if (typeAsString.toUpperCase().equals("PLANT") && creatures[i].getType().equals(CreatureType.valueOf("PLANT"))) {
                     System.out.println("Plant to water: " + creatures[i].getName() + " (availability: " + creatures[i].getAvailability() + ")");
                     System.out.println("\nType in the plant's name to water it!");
-                    String nameAsString = scanner.nextLine();
-                    if (nameAsString.equals(creatures[i].getName())) {
+                    String plantNameAsString = scanner.nextLine();
+                    if (plantNameAsString.equals(creatures[i].getName())) {
                         creatures[i].toIncreaseAvailability();
-                        wateringCan.use();
                         player.setEnergy(10);
-                        System.out.println("\n" + creatures[i].getName() + "'s availability increased to:" + " " + creatures[i].getAvailability());
-                        System.out.println("\n" + wateringCan.getName() + "'s durability has decreased to: " + wateringCan.getDurability());
+                        System.out.println("\n" + creatures[i].getName() + "'s availability increased to: " + creatures[i].getAvailability());
                         System.out.println("Your energy has decreased to: " + garden.getOwner().getEnergy());
                     }
                 }
                 else if (typeAsString.toUpperCase().equals("ANIMAL") && creatures[i].getType().equals(CreatureType.valueOf("ANIMAL"))) {
-                    System.out.println("Animal to feed: " + creatures[i].getName() + " " + creatures[i].getAvailability());
+                    System.out.println("Animal to feed: " + creatures[i].getName() + " (Availability: " + creatures[i].getAvailability() + ")");
                     System.out.println("\nType in the animal's name to feed it!");
-                    String nameAsString = scanner.nextLine();
-                    if (nameAsString.equals(creatures[i].getName())) {
+                    String animalNameAsString = scanner.nextLine();
+                    if (animalNameAsString.equals(creatures[i].getName())) {
                         creatures[i].toIncreaseAvailability();
                         player.setEnergy(10);
+                        System.out.println("\n" + creatures[i].getName() + "'s availability increased to: " + creatures[i].getAvailability());
+                        System.out.println("Your energy has decreased to: " + garden.getOwner().getEnergy());
                         if (creatures[i].getAvailability() == 10) {
                             System.out.println("\n" + creatures[i].getName() + "'s availability increased to: " + creatures[i].getAvailability());
                             System.out.println("Your energy has decreased to: " + garden.getOwner().getEnergy());
                             System.out.println("Your animal is ready for slaughtering! Type in it's name to slaughter!");
-                            String animalNameAsString = scanner.nextLine();
+                            animalNameAsString = scanner.nextLine();
                             if (animalNameAsString.equals(creatures[i].getName())) {
                                 garden.useAnimal((Animal)creatures[i]);
                                 player.setEnergy(30);
+                                System.out.println(creatures[i].getName() + " is slaughtered!");
                                 garden.removeCreatureFromArray(creatures[i]);
+                            } else {
+                            System.out.println("\n" + creatures[i].getName() + "'s availability increased to: " + creatures[i].getAvailability());
+                            System.out.println("Your energy has decreased to: " + garden.getOwner().getEnergy());
                             }
-                        } else {
-                        System.out.println("\n" + creatures[i].getName() + "'s availability increased to: " + creatures[i].getAvailability());
-                        System.out.println("Your energy has decreased to: " + garden.getOwner().getEnergy());
                         }
                     }
                 }
@@ -217,4 +218,5 @@ public class Main {
         }
     }
 }
-
+                         
+                        
