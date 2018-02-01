@@ -30,16 +30,28 @@ public class Player implements java.io.Serializable {
         return energy;
     }
 
+    public void setEnergy(int energylevel) {
+        this.energy -= energylevel;
+    }
+
     public static Player createPlayer() {
-        System.out.println("Type in your player name: ");
-        String playerName = sc.nextLine();
-        System.out.println("Type in your gender: ");
-        String playerGender = sc.nextLine();
-        System.out.println("Type in your age: ");
-        int playerAge = sc.nextInt();
-        System.out.println("Type in your energylevel: ");
-        int playerEnergy = sc.nextInt();
-        Player player = new Player(playerName, playerGender, playerAge, playerEnergy);
+        Player player = null;
+        try {
+            System.out.println("Type in your player name: ");
+            String playerName = sc.nextLine();
+            System.out.println("Type in your gender: ");
+            String playerGender = sc.nextLine();
+            System.out.println("Type in your age: ");
+            int playerAge = sc.nextInt();
+            System.out.println("Type in your energylevel: ");
+            int playerEnergy = sc.nextInt();
+            if(playerEnergy > 100){
+                playerEnergy = 100;
+            }
+            player = new Player(playerName, playerGender, playerAge, playerEnergy);
+        } catch (Exception ex) {
+            System.out.println("Invalid input!");
+        }
         return player;
     }
     public String toString() {

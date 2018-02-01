@@ -6,7 +6,7 @@ public class Tool implements java.io.Serializable {
     public Tool(String name, String material) {
         this.name = name;
         this.material = material;
-        this.durability = 10;
+        this.durability = 1000;
     }
 
     public String getName() {
@@ -22,7 +22,7 @@ public class Tool implements java.io.Serializable {
     }
 
     public void use() {
-        durability--;
+        this.durability--;
     }
 
     public String toString() {

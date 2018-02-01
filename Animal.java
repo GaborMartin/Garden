@@ -8,9 +8,10 @@ public class Animal extends Creature {
     public boolean getIsAlive() {
         return isAlive;
     }
+
     public void setIsAlive() {
         isAlive = false;
     }
-     
+
 
 }

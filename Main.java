@@ -10,7 +10,7 @@ public class Main {
         handleStart();
         System.out.println("\nYour garden's details:");
         System.out.println(garden + "\n");
-        System.out.println("Available commands: :list, :create, :find, :types, :save progress, :exit");
+        System.out.println("Available commands: :list, :create, :creature interact, :find, :types, :save progress, :exit");
         while (true) {
             String line = scanner.nextLine();
             if (":exit".equals(line)) {
@@ -27,7 +27,10 @@ public class Main {
             } else if (":create".equals(line)) {
                 handleCreate();
                 handleMenu();
-
+            } else if (":creature interact".equals(line)) {
+                handleCreatureInteract();
+                handleMenu();
+                
             } else if (":find".equals(line)) {
                 handleFindCreature();
                 handleMenu();
@@ -76,6 +79,7 @@ public class Main {
     private static void handleCreate() {
         System.out.println("What is the type of the creature? (ANIMAL / PLANT)");
         String typeAsString = scanner.nextLine();
+        typeAsString.toUpperCase();
         CreatureType type;
         try {
             type = CreatureType.valueOf(typeAsString);
@@ -95,15 +99,13 @@ public class Main {
             if (creatures[i].getName().equals(nameAsString)) {
                 System.out.println("Creature is found!");
                 System.out.println("\nDetails of the creature:" + "\n" + "Name: " + creatures[i].getName() + ", Type: " + creatures[i].getType() + ", Availability: " + creatures[i].getAvailability());
-            } else {
-                System.out.println("This creature does not exist! Are you sure about the name?");
             }
         }
     }
 
     private static void handleMenu() {
         System.out.println("\nWhat would you like to do?");
-        System.out.println("Available commands: :list, :create, :find, :types, :save progress, :exit");
+        System.out.println("Available commands: :list, :create, :creature interact, :find, :types, :save progress, :exit");
     }
 
     private static void handleSave() {
@@ -154,4 +156,42 @@ public class Main {
             garden.uploadTools("Tools.csv");
         }
     }
-}
+
+    private static void handleCreatureInteract() {
+        System.out.println("Choose a creature! (ANIMAL to feed animals, PLANT to water plants)");
+        Creature[] creatures = garden.getCreatures();
+        Tool wateringCan = garden.findTool("Watering can");
+        String typeAsString = scanner.nextLine();
+        Player player = garden.getOwner();
+        if (creatures.length == 0) {
+            System.out.println("There's no creature to interact");
+        } else {
+            for (int i = 0; i < creatures.length; i++) {
+                if (typeAsString.toUpperCase().equals("PLANT") && creatures[i].getType().equals(CreatureType.valueOf("PLANT"))) {
+                    System.out.println("Plant to water: " + creatures[i].getName() + " (availability: " + creatures[i].getAvailability() + ")");
+                    System.out.println("\nType in the plant's name to water it!");
+                    String nameAsString = scanner.nextLine();
+                    if (nameAsString.equals(creatures[i].getName())) {
+                        creatures[i].toIncreaseAvailability();
+                        wateringCan.use();
+                        player.setEnergy(10);
+                        System.out.println("\n" + creatures[i].getName() + "'s availability increased to:" + " " + creatures[i].getAvailability());
+                        System.out.println("\n" + wateringCan.getName() + "'s durability has decreased to: " + wateringCan.getDurability());
+                        System.out.println("Your energy has decreased to: " + garden.getOwner().getEnergy());
+                    }
+                }
+                else if (typeAsString.toUpperCase().equals("ANIMAL") && creatures[i].getType().equals(CreatureType.valueOf("ANIMAL"))) {
+                    System.out.println("Animal to feed: " + creatures[i].getName() + " " + creatures[i].getAvailability());
+                    System.out.println("\nType in the animal's name to feed it!");
+                    String nameAsString = scanner.nextLine();
+                    if (nameAsString.equals(creatures[i].getName())) {
+                        creatures[i].toIncreaseAvailability();
+                        player.setEnergy(10);
+                        System.out.println("\n" + creatures[i].getName() + "'s availability increased to: " + creatures[i].getAvailability());
+                        System.out.println("Your energy has decreased to: " + garden.getOwner().getEnergy());
+                    }
+                }
+            }
+        }
+    }
+}  

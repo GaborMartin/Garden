@@ -104,5 +104,12 @@ public class Garden implements java.io.Serializable {
         System.out.println("See ya next time!");
     }
 
-
+    public Tool findTool(String name) {
+        for (int i = 0; i < tools.length; i++) {
+            if (name.equals(tools[i].getName())) {
+                return tools[i];
+            }
+        }
+        return null;
+    }
 }
